@@ -29,9 +29,9 @@ class ZebraCalendar extends StatelessWidget {
     this.initDate = initDate ?? DateTime.now();
   }
 
-  late DateTime initDate;
-  late TextStyle? textStyleAvailable;
-  late bool removeDayNames;
+  late final DateTime initDate;
+  late final TextStyle? textStyleAvailable;
+  late final bool removeDayNames;
 
   final Widget Function(DateTime? date, int index)? customBuilder;
   final List<DateTime>? availableDates;
@@ -82,7 +82,10 @@ class ZebraCalendar extends StatelessWidget {
                         _weekday('Su'),
                       ],
                 ...customBuilder != null
-                    ? provider.days.map((e) => customBuilder!(e?.dayData, provider.days.indexOf(e))).toList()
+                    ? provider.days
+                        .map((e) => customBuilder!(
+                            e?.dayData, provider.days.indexOf(e)))
+                        .toList()
                     : provider.days
                         .map(
                           (e) => e == null
